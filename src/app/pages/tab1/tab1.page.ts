@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { DeseosService } from 'src/app/services/deseos.service';
 import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
+import { Lista } from 'src/app/models/lista.model';
 
 @Component({
   selector: 'app-tab1',
@@ -25,7 +26,7 @@ export class Tab1Page {
       inputs: [{
         name: 'titulo',
         type: 'text',
-        placeholder: 'nombre e la lista'
+        placeholder: 'nombre de la lista'
       }],
       buttons: [
         {
@@ -46,7 +47,7 @@ export class Tab1Page {
             //crear lista
             const listaId = this.deseosServices.crearLista(data.titulo);
             this._router.navigateByUrl(`tabs/tab1/agregar/${listaId}`);
-            console.log(listaId);
+            // console.log(listaId);
             
 
 
@@ -56,6 +57,13 @@ export class Tab1Page {
     });
 
     alert.present();
+
+  }
+
+
+  ListaSeleccionada(lista:Lista){
+    this._router.navigateByUrl(`tabs/tab1/agregar/${lista.id}`)
+    
 
   }
 

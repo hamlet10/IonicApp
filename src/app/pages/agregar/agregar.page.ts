@@ -19,9 +19,9 @@ export class AgregarPage implements OnInit {
               private _route:ActivatedRoute) {
   
   const listaId = this._route.snapshot.paramMap.get('listaId');
-  // console.log(listaId);
+
   this.lista = this._deseosServices.obtenerLista(listaId);
-  // console.log(this.lista);
+
   
 
   }
@@ -40,9 +40,23 @@ export class AgregarPage implements OnInit {
   }
 
   cambioCheck(item:ListaItem){
-    console.log(item);
+    const pendientes = this.lista.items
+                        .filter(itemdata => !itemdata.completado).length;
+    if( pendientes === 0 ){
+      this.lista.terminadaEn = new Date();
+      this.lista.terminada = true;
+    }else{
+      this.lista.terminadaEn = null;
+      this.lista.terminada = false
+    }
+    console.log(this.lista);
     this._deseosServices.guardarStorage();
     
+  }
+
+  borrar( i: number){
+    this.lista.items.splice( i, 1)
+    this._deseosServices.guardarStorage();
   }
 
 }

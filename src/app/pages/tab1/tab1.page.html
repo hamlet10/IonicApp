@@ -8,16 +8,17 @@
 
 <ion-content color="dark">
   <ion-list color="dark">
-    <ion-item color="dark" *ngFor="let lista of deseosServices.listas" detail>
+    <ion-item color="dark" *ngFor="let lista of deseosServices.listas" detail (click)="ListaSeleccionada(lista)">
       <ion-label>{{lista.titulo}}</ion-label>
+      <ion-note slot="end" color="tertiary">{{  lista.items.length }}</ion-note>
     </ion-item>
   </ion-list>
-    
+
   <!-- fab placed to the top end -->
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-      <ion-fab-button color="tertiary" (click)="agregarLista()">
-        <ion-icon name="add"></ion-icon>
-      </ion-fab-button>
-    </ion-fab>
+    <ion-fab-button color="tertiary" (click)="agregarLista()">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 
 </ion-content>
