@@ -52,5 +52,12 @@ export class DeseosService {
     this.guardarStorage();
   }
 
+  editarLista(lista:Lista, titulo: string){
+    lista = this.listas.find( l => l.id === lista.id);
+    lista.titulo = titulo
+    this.guardarStorage()
+    
+    
+  }
 
 }
